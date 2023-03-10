@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="application.controllers.WelcomeScreen">
+   <top>
+      <Pane prefHeight="221.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="35.0" layoutY="26.0" prefHeight="170.0" prefWidth="730.0" text="HERE COMES THE NAME OF THE GAME" textFill="#a41515">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </top>
+   <bottom>
+      <Pane prefHeight="110.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnStart" layoutX="310.0" layoutY="33.0" mnemonicParsing="false" onAction="#onBtnStartClicked" text="CLICK TO START">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </bottom>
+</BorderPane>
