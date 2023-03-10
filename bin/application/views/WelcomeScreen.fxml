@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="application.controllers.WelcomeScreen">
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.WelcomeScreen">
    <top>
       <Pane prefHeight="221.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
@@ -30,4 +29,7 @@
          </children>
       </Pane>
    </bottom>
+   <center>
+      <Button fx:id="btnShowAlert" mnemonicParsing="false" onAction="#onShowAlertClicked" text="Show Alert" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>
