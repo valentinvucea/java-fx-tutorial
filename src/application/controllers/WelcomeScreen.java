@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 
+import application.Main;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -29,22 +30,9 @@ public class WelcomeScreen {
 	
 	@FXML
 	protected void onBtnStartClicked(ActionEvent event) {
-
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		Scene menuScreen;
-		
-		try {
-			BorderPane rootTwo = (BorderPane)FXMLLoader.load(getClass().getResource("/application/views/MenuScreen.fxml"));
-			menuScreen = new Scene(rootTwo, 800, 600);
-			menuScreen.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
-			window.setScene(menuScreen);
-			window.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
-	
+		Scene menuScreen = Main.menuScreen;
+		Main.mainStage.setScene(menuScreen);
+		Main.mainStage.show();
 	}
 	
 }
