@@ -5,7 +5,7 @@ public class Game {
 	private Enemy enemy;
 	
 	public Game() {
-		player = new Player();
+		player = new Player("Daria");
 		enemy = new Enemy();
 	}
 	
