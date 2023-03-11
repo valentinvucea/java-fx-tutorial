@@ -4,9 +4,8 @@ public class Game {
 	private Player player;
 	private Enemy enemy;
 	
-	public Game() {
+	public Game(String difficulty) {
 		player = new Player("Daria");
-		enemy = new Enemy();
+		enemy = new Enemy(difficulty);
 	}
-	
 }
