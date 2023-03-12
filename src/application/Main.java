@@ -7,6 +7,12 @@ import application.models.Player;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
@@ -44,8 +50,16 @@ public class Main extends Application {
 	
 	private void initWelcomeScreen() {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/application/views/WelcomeScreen.fxml"));
-			welcomeScreen = new Scene(root, 800, 600);
+			BorderPane rootTwo = (BorderPane)FXMLLoader.load(getClass().getResource("/application/views/WelcomeScreen.fxml"));
+			Image welcomeBackground = new Image((getClass().getResource("/application/resources/welcome.jpg").toExternalForm()));
+		    BackgroundSize bSize = new BackgroundSize(800, 600, false, false, true, false);
+		    rootTwo.setBackground(new Background(new BackgroundImage(welcomeBackground,
+		            BackgroundRepeat.NO_REPEAT,
+		            BackgroundRepeat.NO_REPEAT,
+		            BackgroundPosition.CENTER,
+		            bSize)));
+		    
+		    welcomeScreen = new Scene(rootTwo, 800, 600);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
