@@ -1,10 +1,18 @@
 package application.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import application.Main;
+import application.models.Constants;
+import application.models.Game;
+import application.models.Player;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -13,8 +21,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 
-public class MenuScreen {
+public class MenuScreen implements Initializable {
 
 	@FXML
 	private TextField txtYourName;
@@ -35,7 +44,7 @@ public class MenuScreen {
 	private Button btnStartGame;
 	
 	@FXML
-	private Button btnGameRules;	
+	private Button btnGameRules;
 	
 	@FXML
 	protected void onBtnExitGameClicked(ActionEvent event) {
@@ -50,7 +59,7 @@ public class MenuScreen {
 	}
 	
 	@FXML
-	protected void onBtnStartGameClicked(ActionEvent event) {
+	protected void onBtnStartGameClicked(ActionEvent event) throws IOException {
 		// validate if all inputs were added
 		ArrayList<String> validationErrors = this.validate();
 		
@@ -58,9 +67,42 @@ public class MenuScreen {
 		if (validationErrors.size() > 0) {
 			this.showAlert(Alert.AlertType.ERROR, validationErrors);
 		// else initialize the GameScreen and go there 
+		} else {	
+			// Get player
+			String playerName = txtYourName.getText().trim();
+			if (Main.player == null || Main.player.getName() != playerName) {
+				Main.player = new Player(playerName);
+			}
+			
+			// Create new game
+			Main.game = new Game(Main.player, getDifficulty());
+			
+			// Setup BattleScene
+			Scene battleScreen;
+			BattleScreen battleScreenController;
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/views/BattleScreen.fxml"));
+			BorderPane root = loader.load();
+			battleScreenController = loader.getController();
+			
+			if (Main.battleScreen == null) {
+				battleScreen = new Scene(root, 800, 600);
+				Main.battleScreen = battleScreen;
+			}
+			
+			battleScreenController.updateScreen();
+			Main.mainStage.setScene(Main.battleScreen);
+			Main.mainStage.show();
+		}
+	}
+	
+	private String getDifficulty() {
+		if (radioModerate.isSelected() == true) {
+			return Constants.DIFFICULTY_MODERATE;
+		} else if (radioHard.isSelected() == true) {
+			return Constants.DIFFICULTY_HARD;
 		} else {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION, "Here comes the start Game code");
-		    alert.show();
+			return Constants.DIFFICULTY_EASY;
 		}
 	}
 	
@@ -88,5 +130,23 @@ public class MenuScreen {
 	    Label t = new Label(message);
 	    alert.getDialogPane().setContent(t);
 	    alert.show();
-	}	
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		if (Main.player != null) {
+			txtYourName.setText(Main.player.getName());
+			
+			String difficultyUnlocked = Main.player.getDifficultyUnlocked();
+			if (difficultyUnlocked == Constants.DIFFICULTY_MODERATE) {
+				radioModerate.setDisable(false);
+				radioModerate.setSelected(true);
+			} else if (difficultyUnlocked == Constants.DIFFICULTY_HARD) {
+				radioModerate.setDisable(false);
+				radioModerate.setSelected(false);
+				radioHard.setDisable(false);
+				radioHard.setSelected(true);
+			}
+		}
+	}
 }
