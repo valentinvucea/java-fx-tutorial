@@ -21,6 +21,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 
 public class MenuScreen implements Initializable {
@@ -78,21 +84,33 @@ public class MenuScreen implements Initializable {
 			Main.game = new Game(Main.player, getDifficulty());
 			
 			// Setup BattleScene
-			Scene battleScreen;
 			BattleScreen battleScreenController;
-			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/views/BattleScreen.fxml"));
 			BorderPane root = loader.load();
 			battleScreenController = loader.getController();
 			
-			if (Main.battleScreen == null) {
-				battleScreen = new Scene(root, 800, 600);
-				Main.battleScreen = battleScreen;
-			}
-			
+			setBattleScreen(root);
 			battleScreenController.updateScreen();
 			Main.mainStage.setScene(Main.battleScreen);
 			Main.mainStage.show();
+		}
+	}
+	
+	private void setBattleScreen(BorderPane root) {
+		// Check if battleSceen exists, if not, created it and assign it to Main
+		if (Main.battleScreen == null) {
+			// Set the background to root first
+			Image battleBackground = new Image((getClass().getResource("/application/resources/battleLevelOneBackground.png").toExternalForm()));
+		    BackgroundSize bSize = new BackgroundSize(800, 600, false, false, true, false);
+		    root.setBackground(new Background(new BackgroundImage(battleBackground,
+		            BackgroundRepeat.NO_REPEAT,
+		            BackgroundRepeat.NO_REPEAT,
+		            BackgroundPosition.CENTER,
+		            bSize)));
+		    
+		    // Create the scene
+			Scene battleScreen = new Scene(root, 800, 600);
+			Main.battleScreen = battleScreen;
 		}
 	}
 	

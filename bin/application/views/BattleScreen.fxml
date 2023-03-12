@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -10,7 +13,7 @@
    <bottom>
       <Pane prefHeight="60.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnBack" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#onBtnBackClicked" text="Back to Menu">
+            <Button fx:id="btnBack" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#onBtnBackClicked" text="Quit Game">
                <font>
                   <Font size="14.0" />
                </font>
@@ -21,7 +24,7 @@
    <top>
       <Pane prefHeight="80.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="battleScreenTitle" alignment="CENTER" layoutX="128.0" layoutY="26.0" prefHeight="29.0" prefWidth="544.0" text="Text" textFill="#bf0000">
+            <Label fx:id="battleScreenTitle" alignment="CENTER" layoutX="128.0" layoutY="26.0" prefHeight="29.0" prefWidth="544.0" text="Battle" textFill="#bf0000">
                <font>
                   <Font name="Broadway" size="24.0" />
                </font>
@@ -29,4 +32,51 @@
          </children>
       </Pane>
    </top>
+   <left>
+      <Pane prefHeight="430.0" prefWidth="368.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </BorderPane.margin>
+         <children>
+            <Label fx:id="lblPlayerName" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="6.0" prefHeight="36.0" prefWidth="331.0" text="Label" textFill="#0631dd">
+               <font>
+                  <Font name="Bodoni MT Black" size="22.0" />
+               </font>
+            </Label>
+            <ProgressBar fx:id="playerHealthBar" layoutX="80.0" layoutY="52.0" prefHeight="22.0" prefWidth="220.0" progress="0.0" />
+            <Label layoutX="27.0" layoutY="53.0" text="Health" />
+            <ImageView fx:id="playerImage" fitHeight="240.0" fitWidth="220.0" layoutX="80.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btnPlayerAttack" layoutX="150.0" layoutY="365.0" mnemonicParsing="false" onAction="#onPlayerAttack" prefHeight="30.0" prefWidth="80.0" text="Attack">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Label fx:id="lblPlayerHealth" layoutX="311.0" layoutY="53.0" text="100/100" />
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </Pane>
+   </left>
+   <right>
+      <Pane prefHeight="430.0" prefWidth="368.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </BorderPane.margin>
+         <children>
+            <Label fx:id="lblEnemyName" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="6.0" prefHeight="36.0" prefWidth="331.0" text="Label" textFill="#eb5050">
+               <font>
+                  <Font name="Bodoni MT Black" size="22.0" />
+               </font>
+            </Label>
+            <ProgressBar fx:id="enemyHealthBar" layoutX="80.0" layoutY="52.0" prefHeight="22.0" prefWidth="220.0" progress="0.0" />
+            <Label layoutX="27.0" layoutY="53.0" text="Health" />
+            <ImageView fx:id="enemyImage" fitHeight="240.0" fitWidth="220.0" layoutX="80.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btnEnemyAttack" layoutX="154.0" layoutY="355.0" mnemonicParsing="false" onAction="#onEnemyAttack" prefHeight="25.0" prefWidth="80.0" text="Attack">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Label fx:id="lblEnemyHealth" layoutX="311.0" layoutY="54.0" text="100/100" />
+         </children>
+      </Pane>
+   </right>
 </BorderPane>
