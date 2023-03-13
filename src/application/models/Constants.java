@@ -10,7 +10,8 @@ public class Constants {
     public static final String DIFFICULTY_MODERATE = "moderate";
     public static final String DIFFICULTY_HARD = "Hard";
     
-    public static final ArrayList<Integer> EASY_FACTORS = new ArrayList<Integer>(Arrays.asList(1,2,3));
-    public static final ArrayList<Integer> MODERATE_FACTORS = new ArrayList<Integer>(Arrays.asList(4,5,6));
-    public static final ArrayList<Integer> HARD_FACTORS = new ArrayList<Integer>(Arrays.asList(7,8,9));
+    public static final QuestionFactors EASY_FACTORS = new QuestionFactors(1,3,1,9); // multiplicands: 1-3, multipliers: 1-9
+    public static final QuestionFactors MODERATE_FACTORS = new QuestionFactors(4,6,1,9); // multiplicands: 4-6, multipliers: 1-9
+    public static final QuestionFactors HARD_FACTORS = new QuestionFactors(7,9,1,9); // multiplicands: 7-9, multipliers: 1-9
+    public static final QuestionFactors ALL_FACTORS = new QuestionFactors(1,9,1,9); // multiplicands: 1-9, multipliers: 1-9
 }
