@@ -88,7 +88,7 @@ public class ChallengeScreen implements Initializable {
 			} else {
 				imgResult.setImage(new Image((getClass().getResource("/application/resources/" + CORRECT_ICON).toExternalForm())));
 				String message = "Good Job! Your answer is correct.\n"
-						+ "You earned 10 points for this attack.\n"
+						+ "You earned " + Main.game.getPlayer().getAttackPoints() + " points for this attack.\n"
 						+ "Click Continue to return to the Battle"; // change here to use the player attack points 
 				lblMessage.setText(message);
 				lblMessage.setTextFill(Color.color(0, 1, 0));

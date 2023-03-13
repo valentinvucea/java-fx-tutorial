@@ -5,6 +5,7 @@ import java.util.Hashtable;
 public class Enemy {
 	private String name;
 	private int health = 100;
+	private int maxHealth = 100;	
 	private int attackPoints = 100;
 	private String image;
 	private Hashtable<String, EnemySettings> defaultValues = new Hashtable<String, EnemySettings>();
@@ -13,7 +14,7 @@ public class Enemy {
 		populateDefaultSettings();
 		this.name = defaultValues.get(difficulty).getName();
 		this.attackPoints = defaultValues.get(difficulty).getAttackPoints();
-		this.health = defaultValues.get(difficulty).getHealth();
+		this.health = defaultValues.get(difficulty).getMaxHealth();
 		this.image = defaultValues.get(difficulty).getImage();
 	}
 	
@@ -53,5 +54,13 @@ public class Enemy {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
 	}
 }

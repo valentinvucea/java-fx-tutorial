@@ -11,6 +11,8 @@ import application.Main;
 import application.models.Game;
 import application.models.Player;
 import application.models.Question;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -68,7 +70,7 @@ public class BattleScreen implements Initializable {
 	private Stage challengeStage;
 	
 	// question screen that will run in the modal window
-	private Scene challengeScreen; 
+	private Scene challengeScreen;
 				
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -76,22 +78,42 @@ public class BattleScreen implements Initializable {
 	}
 	
 	public void updateScreen() {
-		// Player
+		// Player name, image and progress bar
 		lblPlayerName.setText(Main.game.getPlayer().getName());
 		playerImage.setImage(new Image((getClass().getResource("/application/resources/elGato.png").toExternalForm())));
-		playerHealthBar.setProgress(1);
-		lblPlayerHealth.setText("100/100");
+		int playerHealth = Main.game.getPlayer().getHealth();
+		int playerMaxHealth = Main.game.getPlayer().getMaxHealth();
+		// cast integers to double otherwise the division will be 0
+		playerHealthBar.setProgress((double) playerHealth / (double) playerMaxHealth);
+		lblPlayerHealth.setText(playerHealth + "/" + playerMaxHealth);
 		
-		// Enemy
+		// Enemy name, image and progress bar
 		lblEnemyName.setText(Main.game.getEnemy().getName());
 		enemyImage.setImage(new Image((getClass().getResource("/application/resources/" + Main.game.getEnemy().getImage()).toExternalForm())));
-		enemyHealthBar.setProgress(1);
-		int enemyMaxHealth = Main.game.getEnemy().getHealth();
-		lblEnemyHealth.setText(enemyMaxHealth + "/" + enemyMaxHealth);
+		int enemyHealth = Main.game.getEnemy().getHealth();
+		int enemyMaxHealth = Main.game.getEnemy().getMaxHealth();
+		// cast integers to double otherwise the division will be 0
+		enemyHealthBar.setProgress((double) enemyHealth / (double) enemyMaxHealth);
+		lblEnemyHealth.setText(enemyHealth + "/" + enemyMaxHealth);
 	}
 	
 	public void updateGameByPlayer(boolean isCorrectAnswer) {
-		// TODO
+		// Update Enemy health
+		int enemyHealth = Main.game.getEnemy().getHealth();
+		if (isCorrectAnswer == true) {
+			enemyHealth = enemyHealth - Main.game.getPlayer().getAttackPoints();
+			if (enemyHealth < 0) {
+				enemyHealth = 0;
+			}
+		}
+		Main.game.getEnemy().setHealth(enemyHealth);
+		
+		// Update screen elements & game
+		int enemyMaxHealth = Main.game.getEnemy().getMaxHealth();
+		enemyHealthBar.setProgress((double) enemyHealth / (double) enemyMaxHealth);
+		lblEnemyHealth.setText(enemyHealth + "/" + enemyMaxHealth);
+			
+		// TODO: If health is 0, run VICTORY procedure: show a screen, update the message, show Quit button
 	}
 	
 	@FXML

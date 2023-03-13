@@ -2,13 +2,13 @@ package application.models;
 
 public class EnemySettings {
 	private String name;
-	private int health;
+	private int maxHealth;
 	private int attackPoints;
 	private String image;
 	
-	public EnemySettings(String name, int health, int attackPoints, String image) {
+	public EnemySettings(String name, int maxHealth, int attackPoints, String image) {
 		this.setName(name);
-		this.setHealth(health);
+		this.setMaxHealth(maxHealth);
 		this.setAttackPoints(attackPoints);
 		this.setImage(image);		
 	}
@@ -21,12 +21,12 @@ public class EnemySettings {
 		this.name = name;
 	}
 
-	public int getHealth() {
-		return health;
+	public int getMaxHealth() {
+		return maxHealth;
 	}
 
-	public void setHealth(int health) {
-		this.health = health;
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
 	}
 
 	public int getAttackPoints() {

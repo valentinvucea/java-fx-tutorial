@@ -2,7 +2,9 @@ package application.models;
 
 public class Player {
 	private int health = 100;
+	private int maxHealth = 100;	
 	private String difficultyUnlocked = Constants.DIFFICULTY_EASY;
+	private int attackPoints = 10;
 	private String name;
 	
 	public Player(String name) {
@@ -31,5 +33,21 @@ public class Player {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getAttackPoints() {
+		return attackPoints;
+	}
+
+	public void setAttackPoints(int attackPoints) {
+		this.attackPoints = attackPoints;
+	}
+
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
 	}
 }
