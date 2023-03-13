@@ -11,13 +11,22 @@
 
 <BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.BattleScreen">
    <bottom>
-      <Pane prefHeight="60.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="91.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnBack" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#onBtnBackClicked" text="Quit Game">
+            <Button fx:id="btnBack" layoutX="14.0" layoutY="30.0" mnemonicParsing="false" onAction="#onBtnBackClicked" text="Quit Game">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
+            <Button fx:id="btnContunue" layoutX="699.0" layoutY="30.0" mnemonicParsing="false" onAction="#onContinueClicked" prefHeight="30.0" prefWidth="87.0" text="Continue">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Label fx:id="lblMessage" layoutX="114.0" layoutY="6.0" prefHeight="76.0" prefWidth="570.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Arial Narrow Bold" size="14.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </bottom>
@@ -46,10 +55,6 @@
             <ProgressBar fx:id="playerHealthBar" layoutX="80.0" layoutY="52.0" prefHeight="22.0" prefWidth="220.0" progress="0.0" />
             <Label layoutX="27.0" layoutY="53.0" text="Health" />
             <ImageView fx:id="playerImage" fitHeight="240.0" fitWidth="220.0" layoutX="80.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="btnPlayerAttack" layoutX="150.0" layoutY="365.0" mnemonicParsing="false" onAction="#onPlayerAttack" prefHeight="30.0" prefWidth="80.0" text="Attack">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font></Button>
             <Label fx:id="lblPlayerHealth" layoutX="311.0" layoutY="53.0" text="100/100" />
          </children>
          <padding>
@@ -71,10 +76,6 @@
             <ProgressBar fx:id="enemyHealthBar" layoutX="80.0" layoutY="52.0" prefHeight="22.0" prefWidth="220.0" progress="0.0" />
             <Label layoutX="27.0" layoutY="53.0" text="Health" />
             <ImageView fx:id="enemyImage" fitHeight="240.0" fitWidth="220.0" layoutX="80.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="btnEnemyAttack" layoutX="154.0" layoutY="355.0" mnemonicParsing="false" onAction="#onEnemyAttack" prefHeight="25.0" prefWidth="80.0" text="Attack">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font></Button>
             <Label fx:id="lblEnemyHealth" layoutX="311.0" layoutY="54.0" text="100/100" />
          </children>
       </Pane>

@@ -1,9 +1,11 @@
 package application;
 	
 import java.io.IOException;
+import java.util.ArrayList;
 
 import application.models.Game;
 import application.models.Player;
+import application.models.QuestionsHistory;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -25,6 +27,7 @@ public class Main extends Application {
 	public static Scene battleScreen;
 	public static Player player;
 	public static Game game;
+	public static ArrayList<QuestionsHistory> questionHistory = new ArrayList<QuestionsHistory>();
 	
 	@Override
 	public void start(Stage primaryStage) {
