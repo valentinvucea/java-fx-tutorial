@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import application.Main;
 import application.models.Question;
+import application.models.QuestionsHistory;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -39,13 +40,28 @@ public class ChallengeScreen implements Initializable {
 	private Button btnCheck;
 	
 	private Question question;
+	private BattleScreen parent;
+	private int answer;
 	
 	private static final String CORRECT_ICON = "correctIcon.png";
 	private static final String WRONG_ICON = "wrongIcon.png";
 	
 	@FXML
 	protected void onBtnContinueClicked(ActionEvent event) {
+		boolean isCorrectAnswer = this.question.isCorrectAnswer(this.answer);
+		
+		// Add challenge to game history
+		QuestionsHistory record = new QuestionsHistory(
+			this.question.getQuestionText(),
+			this.answer,
+			isCorrectAnswer,
+			Main.player.getName(),
+			this.question.getDifficulty()
+		);
+		Main.questionsHistory.add(record);
+		
 		// TODO: update game
+		parent.updateGameByPlayer(isCorrectAnswer);
 		
 		// TODO: update BattleScreen
 		
@@ -58,10 +74,10 @@ public class ChallengeScreen implements Initializable {
 	protected void onBtnCheckClicked(ActionEvent event) {
 		try {
 			// validate for the correct input - force the input into a integer that will throw errors
-			int answer = Integer.parseInt(txtAnswer.getText().trim());
+			this.answer = Integer.parseInt(txtAnswer.getText().trim());
 
 			// Evaluate the answer and show labels, buttons, etc
-			if (false == question.isCorrectAnswer(answer)) {
+			if (false == question.isCorrectAnswer(this.answer)) {
 				imgResult.setImage(new Image((getClass().getResource("/application/resources/" + WRONG_ICON).toExternalForm())));
 				String message = "Sorry... your answer is wrong!\n"
 						+ "The correct answer is " + question.correctAnswer() + "\n" 
@@ -95,10 +111,11 @@ public class ChallengeScreen implements Initializable {
 		// TODO
 	}
 	
-	public void initScreen(Question q) {
+	public void initScreen(Question q, BattleScreen parentController) {
 		this.question = q;
-		lblQuestion.setText(question.getQuestionText());
+		this.parent = parentController;
 		
+		lblQuestion.setText(question.getQuestionText());
 		txtAnswer.setText(null);
 		imgResult.setVisible(false);
 		lblMessage.setVisible(false);

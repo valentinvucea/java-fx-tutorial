@@ -7,4 +7,5 @@ module GameTestWithJavaFX {
 	opens application.controllers to javafx.graphics, javafx.fxml;
 
     exports application.controllers;
+    exports application.models;
 }

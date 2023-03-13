@@ -27,7 +27,7 @@ public class Main extends Application {
 	public static Scene battleScreen;
 	public static Player player;
 	public static Game game;
-	public static ArrayList<QuestionsHistory> questionHistory = new ArrayList<QuestionsHistory>();
+	public static ArrayList<QuestionsHistory> questionsHistory = new ArrayList<QuestionsHistory>();
 	
 	@Override
 	public void start(Stage primaryStage) {

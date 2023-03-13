@@ -90,6 +90,10 @@ public class BattleScreen implements Initializable {
 		lblEnemyHealth.setText(enemyMaxHealth + "/" + enemyMaxHealth);
 	}
 	
+	public void updateGameByPlayer(boolean isCorrectAnswer) {
+		// TODO
+	}
+	
 	@FXML
 	protected void onBtnBackClicked(ActionEvent event) {	
 		Scene menuScreen = Main.menuScreen;
@@ -115,7 +119,7 @@ public class BattleScreen implements Initializable {
 		Question question = new Question(Main.game.getDifficulty());
 		
 		// Update the challenge scene with updated question
-		challengeScreenController.initScreen(question);
+		challengeScreenController.initScreen(question, this);
 		
 		// Finally, set the scene to the new stage and show it
 		challengeStage.setScene(challengeScreen);
@@ -123,7 +127,7 @@ public class BattleScreen implements Initializable {
 	}
 	
 	private void setChallengeStage() {		
-		// create a new stage and remove minimize and maximize buttons - undecorated
+		// create a new stage and remove minimize and maximize buttons - UTILITY
 		this.challengeStage = new Stage(StageStyle.UTILITY);
 		
 		// disable close button
